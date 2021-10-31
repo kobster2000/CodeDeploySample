@@ -13,3 +13,9 @@ echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
 cat /proc/sys/kernel/hostname > /var/www/html/dynamichostname1.html
 amazon-linux-extras install -y epel
 yum install -y stress
+REGION=$(curl 169.254.169.254/latest/meta-data/placement/availability-zone/ | sed 's/[a-z]$//')
+yum install ruby wget -y
+cd /home/ec2-user
+wget https://aws-codedeploy-us-west-2.s3.us-west-2.amazonaws.com/latest/install
+chmod +x ./install
+./install auto
